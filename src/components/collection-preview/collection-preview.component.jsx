@@ -1,18 +1,24 @@
 import React from 'react';
-import './collection-preview.style.scss';
+import PropTypes from 'prop-types';
 import CollectionItem from '../collection-item/collection-item.component';
-
-const CollectionPreview = ({ title, items }) => (
-  <div className="collection-preview">
-    <h1 className="title">{title}</h1>
-    <div className="preview">
+import {CollectionPreviewContainer, Title, Preview} from './collection-preview.styles';
+const CollectionPreview = ({title, items}) => (
+  <CollectionPreviewContainer>
+    <Title>{title}</Title>
+    <Preview>
       {items
-        .filter((itm, idx) => idx < 4)
-        .map(item => (
-          <CollectionItem key={item.id} item={item} />
-        ))}
-    </div>
-  </div>
+          .filter((itm, idx) => idx < 4)
+          .map((item) => (
+            <CollectionItem key={item.id} item={item} />
+          ))}
+    </Preview>
+  </CollectionPreviewContainer>
 );
+
+// PropTypes Velidation
+CollectionPreview.propTypes = {
+  title: PropTypes.string,
+  items: PropTypes.array,
+};
 
 export default CollectionPreview;

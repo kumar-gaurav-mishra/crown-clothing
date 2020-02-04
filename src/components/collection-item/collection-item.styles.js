@@ -1,9 +1,6 @@
-import styled, {css} from 'styled-components';
+import styled from 'styled-components';
 import CustomButton from '../custom-button/custom-button.component';
-const CommonStyle = css`
-    width: 23%;
-`;
-const ExistingCustomButtonStyle = styled(CustomButton)``;
+
 export const CollectionItemContainer = styled.div`
     width: 22vw;
     display: flex;
@@ -12,6 +9,15 @@ export const CollectionItemContainer = styled.div`
     align-items: center;
     word-wrap: break-word;
     position: relative;
+    &:hover{
+        .image{
+            opacity: 0.8;
+        }
+        button{
+            opacity: 0.85;
+            display: flex;
+        }
+    }
 `;
 export const ItemImage = styled.div`
     width: 100%;
@@ -20,9 +26,6 @@ export const ItemImage = styled.div`
     background-size: cover;
     margin-bottom: 5px;
     word-wrap: break-word;
-    ${CollectionItemContainer}:hover & {
-        opacity: 0.8;
-    }
 `;
 
 export const CollectionFooter = styled.div`
@@ -34,21 +37,18 @@ export const CollectionFooter = styled.div`
     word-wrap: break-word;
 `;
 export const CustomButtonContainer = styled(CustomButton)`
-    ${ExistingCustomButtonStyle};
     width: 80%;
     opacity: 0.7;
     position: absolute;
     top: 255px;
     display: none;
-    ${CollectionItemContainer}:hover & {
-        opacity: 0.85;
-        display: flex;
-    }
 `;
 
 export const Name = styled.span`
-    ${CommonStyle}
+    width: 90%;
+    margin-bottom: 15px;
 `;
 export const Price = styled.span`
-    ${CommonStyle}
+    width: 10%;
+    text-align: right;
 `;
