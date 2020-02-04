@@ -1,31 +1,40 @@
 import React from 'react';
-import './checkout-item.style.scss';
-import { connect } from 'react-redux';
-import { removeItemFromCart, removeItem, addItem } from '../../redux/cart/cart.actions';
-const CheckoutItem = ({ cartItem, clearItem, removeExistingItem, addQuantityToExistingItem }) => (
-  <div className="checkout-item">
-    <div className="image-container">
-      <img src={cartItem.imageUrl} alt="item" />
-    </div>
-    <span className="name">{cartItem.name}</span>
-    <span className="quantity">
-      <div className="arrow" onClick={() => removeExistingItem(cartItem)}>
+import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
+import {removeItemFromCart, removeItem, addItem} from '../../redux/cart/cart.actions';
+import {CheckoutItemContainer, ImageContainer, Image, Name, Quantity, Arrow, Value, Price, RemoveButton} from './checkout-item.styles';
+const CheckoutItem = ({cartItem, clearItem, removeExistingItem, addQuantityToExistingItem}) => (
+  <CheckoutItemContainer>
+    <ImageContainer>
+      <Image src={cartItem.imageUrl} alt="item" />
+    </ImageContainer>
+    <Name>{cartItem.name}</Name>
+    <Quantity>
+      <Arrow onClick={() => removeExistingItem(cartItem)}>
         &#10094;
-      </div>
-      <span className="value">{cartItem.quantity}</span>
-      <div className="arrow" onClick={() => addQuantityToExistingItem(cartItem)}>
+      </Arrow>
+      <Value>{cartItem.quantity}</Value>
+      <Arrow onClick={() => addQuantityToExistingItem(cartItem)}>
         &#10095;
-      </div>
-    </span>
-    <span className="price">{cartItem.price}</span>
-    <div className="remove-button" onClick={() => clearItem(cartItem)}>
+      </Arrow>
+    </Quantity>
+    <Price>{cartItem.price}</Price>
+    <RemoveButton onClick={() => clearItem(cartItem)}>
       &#10005;
-    </div>
-  </div>
+    </RemoveButton>
+  </CheckoutItemContainer>
 );
-const mapDispatchToProps = dispatch => ({
-  clearItem: item => dispatch(removeItemFromCart(item)),
-  removeExistingItem: item => dispatch(removeItem(item)),
-  addQuantityToExistingItem: item => dispatch(addItem(item))
+
+// PropTypes velidation
+CheckoutItem.propTypes = {
+  cartItem: PropTypes.object,
+  clearItem: PropTypes.func,
+  removeExistingItem: PropTypes.func,
+  addQuantityToExistingItem: PropTypes.func,
+};
+const mapDispatchToProps = (dispatch) => ({
+  clearItem: (item) => dispatch(removeItemFromCart(item)),
+  removeExistingItem: (item) => dispatch(removeItem(item)),
+  addQuantityToExistingItem: (item) => dispatch(addItem(item)),
 });
 export default connect(null, mapDispatchToProps)(CheckoutItem);
