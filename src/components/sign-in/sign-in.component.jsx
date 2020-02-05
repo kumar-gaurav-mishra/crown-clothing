@@ -11,7 +11,8 @@ class SignIn extends React.Component {
       email: '',
       password: ''
     };
-  }
+  };
+
   handleSubmit = async e => {
     e.preventDefault();
     const { email, password } = this.state;
@@ -25,11 +26,13 @@ class SignIn extends React.Component {
       console.log(err);
       return err;
     }
-  };
-  handleChange = e => {
+  }
+
+  handleChange = async e => {
     const { value, name } = e.target;
     this.setState({ [name]: value });
   };
+
   render() {
     return (
       <div className="sign-in">
