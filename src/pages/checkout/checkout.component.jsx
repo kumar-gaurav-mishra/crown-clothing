@@ -1,43 +1,49 @@
 import React from 'react';
-import './checkout.style.scss';
 import {connect} from 'react-redux';
+import PropTypes from 'prop-types';
 import {createStructuredSelector} from 'reselect';
 import {selectCartItems, selectCartTotal} from '../../redux/cart/cart.selectors';
 import CheckoutItem from '../../components/checkout-item/checkout-item.component';
+import {CheckoutPageContainer, CheckoutHeader, HeaderBlock, Total, TestWarning} from './checkout.styles';
 import StripeCheckoutButton from '../../components/stripe-button/stripe-button.component';
 const CheckoutPage = ({cartItems, total}) => (
-  <div className="checkout-page">
-    <div className="checkout-header">
-      <div className="header-block">
+  <CheckoutPageContainer>
+    <CheckoutHeader>
+      <HeaderBlock>
         <span>Product</span>
-      </div>
-      <div className="header-block">
+      </HeaderBlock>
+      <HeaderBlock>
         <span>Description</span>
-      </div>
-      <div className="header-block">
+      </HeaderBlock>
+      <HeaderBlock>
         <span>Quantity</span>
-      </div>
-      <div className="header-block">
+      </HeaderBlock>
+      <HeaderBlock>
         <span>Price</span>
-      </div>
-      <div className="header-block">
+      </HeaderBlock>
+      <HeaderBlock>
         <span>Remove</span>
-      </div>
-    </div>
+      </HeaderBlock>
+    </CheckoutHeader>
     {cartItems.map((cartItem) => (
       <CheckoutItem key={cartItem.id} cartItem={cartItem} />
     ))}
-    <div className="total">
+    <Total>
       <span>TOTAL: $ {total}</span>
-    </div>
-    <div className="test-warning">
+    </Total>
+    <TestWarning>
       *Please use the following thest credit card for payments*
       <br/>
       4242 4242 4242 4242 - EXP: 01/20 - CCV: 123
-    </div>
+    </TestWarning>
     <StripeCheckoutButton price={total}/>
-  </div>
+  </CheckoutPageContainer>
 );
+// PropTypes velidation
+CheckoutPage.propTypes = {
+  cartItems: PropTypes.array,
+  total: PropTypes.number,
+};
 const mapStateToProps = createStructuredSelector({
   cartItems: selectCartItems,
   total: selectCartTotal,
