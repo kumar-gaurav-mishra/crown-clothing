@@ -18,7 +18,7 @@ const CollectionPage = ({collection}) => {
 };
 // PropTypes Velidation
 CollectionPage.propTypes = {
-  collection: PropTypes.array.isRequired,
+  collection: PropTypes.array,
 };
 
 const mapStateToProps = (state, ownProps) => ({
