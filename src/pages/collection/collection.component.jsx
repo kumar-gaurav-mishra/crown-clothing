@@ -5,11 +5,12 @@ import {selectCollection} from '../../redux/shop/shop.selector';
 import {CollectionPageContainer, Title, Items, CollectionItemContainer} from './collection.styles';
 
 const CollectionPage = ({collection}) => {
+  const {items, title} = collection;
   return (
     <CollectionPageContainer>
-      <Title>{collection.title}</Title>
+      <Title>{title}</Title>
       <Items>
-        {collection.items.map((item) => (
+        {items.map((item) => (
           <CollectionItemContainer key={item.id} item={item} />
         ))}
       </Items>
