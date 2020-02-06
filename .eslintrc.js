@@ -22,6 +22,15 @@ module.exports = {
     'linebreak-style': 0,
     'global-require': 0,
     'eslint linebreak-style': [0, 'error', 'windows'],
-    'max-len': ['error', { code: 160 }]
+    'max-len': ['error', { code: 160 }],
+    "require-jsdoc": ["error", {
+        "require": {
+            "FunctionDeclaration": true,
+            "MethodDefinition": false,
+            "ClassDeclaration": false,
+            "ArrowFunctionExpression": false,
+            "FunctionExpression": false
+        }
+    }]
   }
 };
